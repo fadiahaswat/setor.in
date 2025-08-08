@@ -54,6 +54,10 @@
         .section-header { font-size: 1.25rem; font-weight: 700; display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem; margin-bottom: 1rem; }
         .section-header svg { color: var(--subtle-text); }
         .footer-bg { background-color: #111827; background-image: radial-gradient(circle at 1px 1px, #374151 1px, transparent 0); background-size: 20px 20px; }
+        .profile-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .profile-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
+        .analisis-tab { transition: all 0.2s ease-in-out; }
+        .analisis-tab.active { color: #d97706; border-color: #d97706; background-color: rgba(251, 191, 36, 0.1); }
     </style>
 </head>
 <body class="text-gray-900">
@@ -100,11 +104,11 @@
                                  <div class="flex items-center gap-3 mt-6"><div class="bg-white/20 p-2 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg></div><span class="font-bold text-lg">Setor.in</span></div>
                              </div>
                              <button data-target-page="page-analisis" class="order-3 lg:order-none lg:col-span-2 bg-gray-800 hover:bg-gray-900 text-white p-6 rounded-2xl text-left flex flex-col justify-between group transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.03]">
-                                 <div>
+                                 <div class="flex-grow">
                                      <h3 class="text-2xl font-bold">Lihat Analisis Santri</h3>
                                      <p class="text-gray-300 mt-1">Pilih santri untuk melihat detail progres hafalan.</p>
                                  </div>
-                                 <div class="flex justify-end">
+                                 <div class="flex justify-end mt-4">
                                      <div class="bg-amber-500 p-3 rounded-full group-hover:bg-amber-400 group-hover:scale-110 transition-all duration-300">
                                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
                                      </div>
@@ -117,7 +121,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div class="stat-card-blue text-white p-5 rounded-2xl shadow-lg flex items-center gap-4">
                                 <div class="bg-white/20 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg></div>
-                                <div><p class="text-sm font-semibold opacity-90">Santri Aktif</p><p id="stats-santri-aktif" class="text-2xl font-bold">0 / 0</p></div>
+                                <div><p class="text-sm font-semibold opacity-90">Santri Aktif (Bulan Ini)</p><p id="stats-santri-aktif" class="text-2xl font-bold">0 / 0</p></div>
                             </div>
                             <div class="stat-card-green text-white p-5 rounded-2xl shadow-lg flex items-center gap-4">
                                 <div class="bg-white/20 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
@@ -137,7 +141,7 @@
                     
                     <!-- Footer Baru -->
                     <footer class="mt-12 pt-8 footer-bg text-white rounded-2xl p-8">
-                        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-center md:text-left">
                             <div>
                                 <div class="flex items-center justify-center md:justify-start gap-3">
                                     <div class="bg-amber-500 p-2 rounded-lg text-white"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg></div>
@@ -146,17 +150,9 @@
                                 <p class="mt-2 text-sm text-gray-400">Memudahkan pemantauan progres hafalan santri secara modern dan transparan.</p>
                             </div>
                             <div>
-                                <h4 class="font-semibold">Tautan Cepat</h4>
-                                <ul class="mt-2 space-y-1 text-sm">
-                                    <li><a href="#" data-page="page-beranda" class="text-amber-400 hover:underline flex items-center gap-2 justify-center md:justify-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>Beranda</a></li>
-                                    <li><a href="#" data-page="page-analisis" class="text-amber-400 hover:underline flex items-center gap-2 justify-center md:justify-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>Analisis Santri</a></li>
-                                    <li><a href="#" data-page="page-riwayat" class="text-amber-400 hover:underline flex items-center gap-2 justify-center md:justify-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>Riwayat</a></li>
-                                </ul>
-                            </div>
-                            <div>
                                 <h4 class="font-semibold">Kontak & Dukungan</h4>
                                 <ul class="mt-2 space-y-1 text-sm">
-                                    <li><a href="mailto:dukungan@contoh.com?subject=Masukan%20Aplikasi%20Setor.in" class="text-amber-400 hover:underline flex items-center gap-2 justify-center md:justify-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>Beri Masukan</a></li>
+                                    <li><a href="https://wa.me/6285339213109" target="_blank" class="text-amber-400 hover:underline flex items-center gap-2 justify-center md:justify-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>Beri Masukan (WhatsApp)</a></li>
                                     <li><a href="#" id="footer-help-button" class="text-amber-400 hover:underline flex items-center gap-2 justify-center md:justify-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.79 4 4 0 2.21-1.79 4-4 4-1.742 0-3.223-.835-3.772-2M12 18v.01" /></svg>Bantuan & FAQ</a></li>
                                 </ul>
                             </div>
@@ -194,10 +190,11 @@
             <!-- Halaman Riwayat -->
             <div id="page-riwayat" class="page-content hidden p-4 sm:p-6 lg:p-8">
                 <div class="max-w-6xl mx-auto">
-                    <div class="text-center sm:text-left pt-12 sm:pt-0 mb-8"><h2 class="text-2xl sm:text-3xl font-bold flex items-center gap-3 justify-center sm:justify-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg> Riwayat Setoran</h2><p class="text-[var(--subtle-text)] mt-2 sm:pl-11">Cari dan filter 50 riwayat setoran terakhir.</p></div>
+                    <div class="text-center sm:text-left pt-12 sm:pt-0 mb-8"><h2 class="text-2xl sm:text-3xl font-bold flex items-center gap-3 justify-center sm:justify-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg> Riwayat Setoran</h2><p class="text-[var(--subtle-text)] mt-2 sm:pl-11">Cari dan filter riwayat setoran.</p></div>
                     <div class="p-4 rounded-xl mb-6 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 items-end glass-card"><div class="lg:col-span-1"><label for="search-riwayat" class="text-sm font-medium">Cari Santri</label><div class="relative"><input type="search" id="search-riwayat" placeholder="Ketik nama..." class="w-full mt-1 p-2 rounded-lg glass-input" autocomplete="off"><div id="suggestions-container" class="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg hidden"></div></div></div><div><label for="filter-program" class="text-sm font-medium">Program</label><select id="filter-program" class="w-full mt-1 p-2 rounded-lg glass-input"><option value="Semua">Semua Program</option><option value="Tahfizh">Tahfizh</option><option value="Unggulan">Unggulan</option></select></div><div><label for="filter-kelas" class="text-sm font-medium">Kelas</label><select id="filter-kelas" class="w-full mt-1 p-2 rounded-lg glass-input"><option value="Semua">Semua Kelas</option><option value="2A">2A</option><option value="2B">2B</option><option value="2C">2C</option><option value="2D">2D</option><option value="2G">2G</option><option value="2H">2H</option><option value="2CDGH">2CDGH</option></select></div><div><label for="filter-tanggal-mulai" class="text-sm font-medium">Dari</label><input type="date" id="filter-tanggal-mulai" class="w-full mt-1 p-2 rounded-lg glass-input"></div><div><label for="filter-tanggal-akhir" class="text-sm font-medium">Sampai</label><input type="date" id="filter-tanggal-akhir" class="w-full mt-1 p-2 rounded-lg glass-input"></div></div>
                     <div id="icon-legend-riwayat" class="mb-6"></div>
                     <div id="content-riwayat" class="rounded-2xl overflow-hidden glass-card overflow-x-auto"><table class="min-w-full"><thead class="glass-nav border-b border-[var(--nav-border)] sticky top-0 z-10"><tr><th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Santri</th><th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Detail</th><th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider hidden sm:table-cell">Tanggal</th></tr></thead><tbody id="setoranTableBody" class="divide-y divide-[var(--card-border)]"></tbody></table></div>
+                    <div id="riwayat-pagination" class="mt-4 flex justify-between items-center text-sm"></div>
                 </div>
             </div>
             
@@ -276,7 +273,7 @@
         <div class="space-y-8">
             <!-- Profile Card & Stats -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div class="lg:col-span-1 glass-card p-6 rounded-2xl flex flex-col items-center text-center fade-in shadow-lg">
+                <div class="lg:col-span-1 profile-card glass-card p-6 rounded-2xl flex flex-col items-center text-center fade-in shadow-lg">
                     <div class="w-24 h-24 bg-amber-100 rounded-full flex items-center justify-center border-4 border-white shadow-md">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
                     </div>
@@ -403,7 +400,9 @@ document.addEventListener('DOMContentLoaded', () => {
         allSetoran: [],
         santriData: [],
         classGroups: {},
-        searchDebounceTimer: null
+        searchDebounceTimer: null,
+        riwayatCurrentPage: 1,
+        riwayatItemsPerPage: 20,
     };
 
     /**
@@ -413,7 +412,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const DOM = {};
     function cacheDOMElements() {
-        const ids = ['main-nav', 'main-content', 'setoranTableBody', 'history-row-template', 'search-riwayat', 'suggestions-container', 'filter-tanggal-mulai', 'filter-tanggal-akhir', 'filter-program', 'filter-kelas', 'stats-santri-aktif', 'stats-santri-tuntas', 'stats-santri-belum-tuntas', 'mutqin-juz29-progress-container', 'mutqin-juz30-progress-container', 'rekap-select', 'rekap-content-container', 'toast', 'toast-message', 'toast-icon', 'datetime-container', 'rekap-content-template', 'mutqin-unggulan-progress-container', 'tuntas-tracking-accordion', 'mutqin-unggulan-circle', 'mutqin-juz30-circle', 'mutqin-juz29-circle', 'mutqin-unggulan-details', 'mutqin-juz30-details', 'mutqin-juz29-details', 'peringkat-section', 'tahfizh-tuntas-tracking-section', 'help-button', 'helpModal', 'closeHelpModal', 'santri-select-analisis', 'analisis-content-container', 'analisis-dashboard-template', 'analisis-prompt-template', 'target-ketuntasan-section', 'icon-legend-riwayat', 'icon-legend-rekap', 'footer-help-button', 'peringkatModal', 'closePeringkatModal', 'peringkatModalTitle', 'peringkatModalContent'];
+        const ids = ['main-nav', 'main-content', 'setoranTableBody', 'history-row-template', 'search-riwayat', 'suggestions-container', 'filter-tanggal-mulai', 'filter-tanggal-akhir', 'filter-program', 'filter-kelas', 'stats-santri-aktif', 'stats-santri-tuntas', 'stats-santri-belum-tuntas', 'mutqin-juz29-progress-container', 'mutqin-juz30-progress-container', 'rekap-select', 'rekap-content-container', 'toast', 'toast-message', 'toast-icon', 'datetime-container', 'rekap-content-template', 'mutqin-unggulan-progress-container', 'tuntas-tracking-accordion', 'mutqin-unggulan-circle', 'mutqin-juz30-circle', 'mutqin-juz29-circle', 'mutqin-unggulan-details', 'mutqin-juz30-details', 'mutqin-juz29-details', 'peringkat-section', 'tahfizh-tuntas-tracking-section', 'help-button', 'helpModal', 'closeHelpModal', 'santri-select-analisis', 'analisis-content-container', 'analisis-dashboard-template', 'analisis-prompt-template', 'target-ketuntasan-section', 'icon-legend-riwayat', 'icon-legend-rekap', 'footer-help-button', 'peringkatModal', 'closePeringkatModal', 'peringkatModalTitle', 'peringkatModalContent', 'riwayat-pagination'];
         ids.forEach(id => {
             const propName = id.replace(/-(\w)/g, (_, p1) => p1.toUpperCase());
             DOM[propName] = document.getElementById(id);
@@ -525,11 +524,23 @@ document.addEventListener('DOMContentLoaded', () => {
             UI.renderIconLegends();
         },
         renderBeranda: () => {
-            const santriAktifIds = new Set(State.allSetoran.map(s => s.santriId));
+            const now = new Date();
+            const currentMonth = now.getMonth();
+            const currentYear = now.getFullYear();
+            
+            const activeSantriIds = new Set(
+                State.allSetoran
+                    .filter(s => {
+                        const setoranDate = new Date(s.createdAt);
+                        return setoranDate.getMonth() === currentMonth && setoranDate.getFullYear() === currentYear;
+                    })
+                    .map(s => s.santriId)
+            );
+            
             const totalSantri = Config.santriList.length;
             const tuntasCount = State.santriData.filter(s => s.isTuntas).length;
 
-            DOM.statsSantriAktif.textContent = `${santriAktifIds.size} / ${totalSantri}`;
+            DOM.statsSantriAktif.textContent = `${activeSantriIds.size} / ${totalSantri}`;
             DOM.statsSantriTuntas.textContent = tuntasCount;
             DOM.statsSantriBelumTuntas.textContent = totalSantri - tuntasCount;
 
@@ -786,39 +797,60 @@ document.addEventListener('DOMContentLoaded', () => {
             const filtered = State.allSetoran
                 .filter(setoran => {
                     const santri = State.santriData.find(st => st.id === setoran.santriId);
-                    const classMatch = (classFilter === 'Semua') || (santri && (classFilter === '2CDGH' ? ['2C', '2D', '2G', '2H'].includes(santri.kelas) : santri.kelas === classFilter));
+                    if (!santri) return false;
+                    const classMatch = (classFilter === 'Semua') || (classFilter === '2CDGH' ? ['2C', '2D', '2G', '2H'].includes(santri.kelas) : santri.kelas === classFilter);
                     const dateMatch = (!startDate || new Date(setoran.createdAt) >= startDate) && (!endDate || new Date(setoran.createdAt) <= endDate);
-                    const programMatch = (programFilter === 'Semua' || (santri && santri.program === programFilter));
+                    const programMatch = (programFilter === 'Semua' || santri.program === programFilter);
                     const searchMatch = setoran.namaSantri.toLowerCase().includes(searchTerm);
                     return searchMatch && programMatch && classMatch && dateMatch;
                 })
-                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                .slice(0, 50);
+                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            const totalItems = filtered.length;
+            const totalPages = Math.ceil(totalItems / State.riwayatItemsPerPage);
+            const startIndex = (State.riwayatCurrentPage - 1) * State.riwayatItemsPerPage;
+            const endIndex = startIndex + State.riwayatItemsPerPage;
+            const pageItems = filtered.slice(startIndex, endIndex);
 
             const tableBody = DOM.setoranTableBody;
             tableBody.innerHTML = '';
-            if (filtered.length === 0) {
+            if (pageItems.length === 0) {
                 tableBody.innerHTML = `<tr><td colspan="3" class="text-center p-8 text-gray-500">Tidak ada data yang cocok dengan filter.</td></tr>`;
+            } else {
+                const fragment = document.createDocumentFragment();
+                const template = DOM.historyRowTemplate;
+                pageItems.forEach(setoran => {
+                    const santri = State.santriData.find(s => s.id === setoran.santriId);
+                    const clone = template.content.cloneNode(true);
+                    clone.querySelector('.data-nama').textContent = setoran.namaSantri;
+                    clone.querySelector('.data-jenis').textContent = setoran.jenis;
+                    clone.querySelector('.data-juz-text').textContent = String(setoran.juz) === "juz30_setengah" ? "Setengah Juz 30" : `Juz ${setoran.juz}`;
+                    clone.querySelector('.data-unit').textContent = setoran.halaman ? `${setoran.halaman} hlm` : setoran.surat;
+                    clone.querySelector('.data-tanggal').textContent = new Date(setoran.createdAt).toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
+                    if (santri) {
+                        clone.querySelector('.data-program-icon').innerHTML = Utils.getProgramIcon(santri.program);
+                        clone.querySelector('.data-kelas-icon').innerHTML = Utils.getClassIcon(santri.kelas);
+                    }
+                    fragment.appendChild(clone);
+                });
+                tableBody.appendChild(fragment);
+            }
+            UI.renderRiwayatPagination(totalItems, totalPages);
+        },
+        renderRiwayatPagination: (totalItems, totalPages) => {
+            const container = DOM.riwayatPagination;
+            if (totalPages <= 1) {
+                container.innerHTML = '';
                 return;
             }
-
-            const fragment = document.createDocumentFragment();
-            const template = DOM.historyRowTemplate;
-            filtered.forEach(setoran => {
-                const santri = State.santriData.find(s => s.id === setoran.santriId);
-                const clone = template.content.cloneNode(true);
-                clone.querySelector('.data-nama').textContent = setoran.namaSantri;
-                clone.querySelector('.data-jenis').textContent = setoran.jenis;
-                clone.querySelector('.data-juz-text').textContent = String(setoran.juz) === "juz30_setengah" ? "Setengah Juz 30" : `Juz ${setoran.juz}`;
-                clone.querySelector('.data-unit').textContent = setoran.halaman ? `${setoran.halaman} hlm` : setoran.surat;
-                clone.querySelector('.data-tanggal').textContent = new Date(setoran.createdAt).toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
-                if (santri) {
-                    clone.querySelector('.data-program-icon').innerHTML = Utils.getProgramIcon(santri.program);
-                    clone.querySelector('.data-kelas-icon').innerHTML = Utils.getClassIcon(santri.kelas);
-                }
-                fragment.appendChild(clone);
-            });
-            tableBody.appendChild(fragment);
+            const currentPage = State.riwayatCurrentPage;
+            container.innerHTML = `
+                <span class="font-semibold">Halaman ${currentPage} dari ${totalPages}</span>
+                <div class="flex gap-2">
+                    <button id="prev-page-btn" class="px-3 py-1 rounded-lg bg-white border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed" ${currentPage === 1 ? 'disabled' : ''}>Sebelumnya</button>
+                    <button id="next-page-btn" class="px-3 py-1 rounded-lg bg-white border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed" ${currentPage === totalPages ? 'disabled' : ''}>Berikutnya</button>
+                </div>
+            `;
         },
         renderRekap: () => {
             const groupOrder = ['Seluruh Santri', 'Khusus Tahfizh', ...Object.keys(State.classGroups).filter(g => g !== 'Seluruh Santri' && g !== 'Khusus Tahfizh').sort()];
@@ -1073,6 +1105,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 
                 santri.totalPagesSetor = santri.setoran.reduce((sum, s) => sum + (parseFloat(s.halaman) || 0), 0);
+                if (santri.program === 'Unggulan' && santri.nilai >= 100) {
+                    santri.totalPagesSetor = Math.max(santri.totalPagesSetor, 9);
+                }
+
                 santri.mutqinPages = santri.setoran.filter(s => s.jenis === 'Mutqin').reduce((sum, s) => sum + (parseFloat(s.halaman) || 0), 0);
 
                 const ziyadahSetoran = santri.setoran.filter(s => s.jenis === 'Ziyadah');
@@ -1126,7 +1162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.body.addEventListener('click', e => {
-            const button = e.target.closest('[data-target-page], .accordion-button, .sortable, .tab-peringkat, .tahfizh-tab, #footer-help-button, .view-top10-btn');
+            const button = e.target.closest('[data-target-page], .accordion-button, .sortable, .tab-peringkat, .tahfizh-tab, #footer-help-button, .view-top10-btn, .analisis-tab');
             if (!button) return;
 
             if (button.matches('[data-target-page]')) {
@@ -1163,6 +1199,13 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (button.matches('.view-top10-btn')) {
                 const { program, key, title, unit } = button.dataset;
                 UI.renderPeringkatModal(program, key, title, unit);
+            } else if (button.matches('.analisis-tab')) {
+                const targetId = button.dataset.target;
+                const container = button.closest('.fade-in');
+                container.querySelectorAll('.analisis-tab').forEach(t => t.classList.remove('active'));
+                button.classList.add('active');
+                container.querySelectorAll('.analisis-tab-content').forEach(c => c.classList.add('hidden'));
+                container.querySelector(`#${targetId}`).classList.remove('hidden');
             }
         });
         
@@ -1185,29 +1228,19 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        [DOM.filterTanggalMulai, DOM.filterTanggalAkhir, DOM.filterProgram, DOM.filterKelas].forEach(el => el.addEventListener('input', UI.renderHistoryTable));
-        DOM.searchRiwayat.addEventListener('input', e => {
-            clearTimeout(State.searchDebounceTimer);
-            State.searchDebounceTimer = setTimeout(() => {
-                UI.renderHistoryTable();
-                const query = e.target.value;
-                if (query.length < 2) {
-                    DOM.suggestionsContainer.classList.add('hidden');
-                    return;
+        [DOM.filterTanggalMulai, DOM.filterTanggalAkhir, DOM.filterProgram, DOM.filterKelas, DOM.searchRiwayat].forEach(el => el.addEventListener('input', () => {
+            State.riwayatCurrentPage = 1;
+            UI.renderHistoryTable();
+        }));
+
+        DOM.riwayatPagination.addEventListener('click', e => {
+            if (e.target.id === 'prev-page-btn') {
+                if (State.riwayatCurrentPage > 1) {
+                    State.riwayatCurrentPage--;
+                    UI.renderHistoryTable();
                 }
-                const suggestions = State.santriData.filter(s => s.nama.toLowerCase().includes(query.toLowerCase())).slice(0, 5);
-                if (suggestions.length > 0) {
-                    DOM.suggestionsContainer.innerHTML = suggestions.map(s => `<div class="suggestion-item p-2 hover:bg-[var(--hover-bg)] cursor-pointer">${s.nama}</div>`).join('');
-                    DOM.suggestionsContainer.classList.remove('hidden');
-                } else {
-                    DOM.suggestionsContainer.classList.add('hidden');
-                }
-            }, 300);
-        });
-        DOM.suggestionsContainer.addEventListener('click', e => {
-            if (e.target.matches('.suggestion-item')) {
-                DOM.searchRiwayat.value = e.target.textContent;
-                DOM.suggestionsContainer.classList.add('hidden');
+            } else if (e.target.id === 'next-page-btn') {
+                State.riwayatCurrentPage++;
                 UI.renderHistoryTable();
             }
         });
